@@ -1,7 +1,6 @@
 variable "rgname" {
   type        = string
   description = "Name of resource group"
-  default     = "rg-tisip-iac"
 }
 
 variable "location" {
@@ -18,7 +17,6 @@ variable "subnet_id" {
 variable "environment" {
   type        = string
   description = "Environment tag"
-  default     = ""
 }
 
 variable "tags" {
@@ -33,6 +31,12 @@ variable "vmname" {
   default     = "vm-tisip-iac"
 }
 
+variable "computername" {
+  type        = string
+  description = "Computer name of the Virtual Machine"
+  default     = "vm-tisip-iac"
+}
+
 variable "vmsize" {
   type        = string
   description = "The size of the Virtual Machine"
@@ -43,4 +47,13 @@ variable "nicname" {
   type        = string
   description = "Name of the Network Interface"
   default     = "nic-tisip-iac"
+}
+
+variable "admin_username" {
+  type = string
+}
+
+variable "admin_password" {
+  type      = string
+  sensitive = true
 }

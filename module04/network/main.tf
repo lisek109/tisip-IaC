@@ -2,6 +2,7 @@ resource "azurerm_network_security_group" "nsg" {
   name                = var.nsgname
   location            = var.location
   resource_group_name = var.rgname
+  tags                = merge({ environment = var.environment }, var.tags)
 }
 
 resource "azurerm_virtual_network" "vnet" {

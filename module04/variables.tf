@@ -1,25 +1,8 @@
-variable "rgname" {
-  type        = string
-  description = "Name of resource group"
-  default     = "rg-tisip-iac"
-}
 
 variable "location" {
   type        = string
   description = "Location of resource group"
   default     = "westeurope"
-}
-
-variable "nsgname" {
-  type        = string
-  description = "Name of the Network Security Group"
-  default     = "nsg-tisip-iac"
-}
-
-variable "vnetname" {
-  type        = string
-  description = "Name of the Virtual Network"
-  default     = "vnet-tisip-iac"
 }
 
 variable "environment" {
@@ -38,13 +21,6 @@ variable "tags" {
   type        = map(string)
   description = "Tags to be applied to resources"
   default     = {}
-}
-
-
-variable "subnetname" {
-  type        = string
-  description = "Name of the Subnet"
-  default     = "snet-tisip-iac"
 }
 
 variable "vnet_address_space" {
@@ -71,13 +47,6 @@ variable "project" {
   default     = "tisip-iac"
 }
 
-
-variable "vmname" {
-  type        = string
-  description = "Name of the Virtual Machine"
-  default     = "vm-tisip-iac"
-}
-
 variable "vmsize" {
   type        = string
   description = "The size of the Virtual Machine"
@@ -88,4 +57,13 @@ variable "nicname" {
   type        = string
   description = "Name of the Network Interface"
   default     = "nic-tisip-iac"
+}
+
+variable "admin_username" {
+  type = string
+}
+
+variable "admin_password" {
+  type      = string
+  sensitive = true
 }

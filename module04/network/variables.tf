@@ -1,19 +1,16 @@
 variable "nsgname" {
   type        = string
   description = "Name of the Network Security Group"
-  default     = "nsg-tisip-iac"
 }
 
 variable "vnetname" {
   type        = string
   description = "Name of the Virtual Network"
-  default     = "vnet-tisip-iac"
 }
 
 variable "rgname" {
   type        = string
   description = "Name of resource group"
-  default     = "rg-tisip-iac"
 }
 
 variable "location" {
@@ -25,7 +22,6 @@ variable "location" {
 variable "environment" {
   type        = string
   description = "Environment tag"
-  default     = ""
 }
 
 variable "tags" {
@@ -43,11 +39,17 @@ variable "subnetname" {
 variable "vnet_address_space" {
   type        = list(string)
   description = "The address space that is used by the virtual network."
-  default     = []
+  validation {
+    condition     = length(var.vnet_address_space) > 0
+    error_message = "Provide at least one CIDR in vnet_address_space."
+  }
 }
 
 variable "subnet_prefixes" {
   type        = list(string)
   description = "The address prefixes to use for the subnet."
-  default     = []
+  validation {
+    condition     = length(var.subnet_prefixes) > 0
+    error_message = "Provide at least one CIDR in subnet_prefixes."
+  }
 }

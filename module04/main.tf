@@ -21,6 +21,7 @@ locals {
 resource "azurerm_resource_group" "ng" {
   name     = "${local.name_prefix}-rg-${var.seq}"
   location = var.location
+  tags     = merge({ environment = var.environment }, var.tags)
 }
 
 module "network" {
@@ -33,16 +34,20 @@ module "network" {
   subnetname         = "${local.name_prefix}-snet-001"
   vnet_address_space = var.vnet_address_space
   subnet_prefixes    = var.subnet_prefixes
+  tags               = var.tags
 }
 
 module "compute" {
-  source      = "./compute"
-  rgname      = azurerm_resource_group.ng.name
-  location    = var.location
-  environment = var.environment
-  vmname      = "${local.name_prefix}-vm-${var.seq}"
-  vmsize      = var.vmsize
-  nicname     = "${local.name_prefix}-nic-${var.seq}"
-  subnet_id   = module.network.subnet_id
-  tags        = var.tags
+  source         = "./compute"
+  rgname         = azurerm_resource_group.ng.name
+  location       = var.location
+  environment    = var.environment
+  vmname         = "${local.name_prefix}-vm-${var.seq}"
+  vmsize         = var.vmsize
+  computername   = "${var.environment_short}-vm-${var.seq}"
+  nicname        = "${local.name_prefix}-nic-${var.seq}"
+  subnet_id      = module.network.subnet_id
+  tags           = var.tags
+  admin_password = var.admin_password
+  admin_username = var.admin_username
 }

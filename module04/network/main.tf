@@ -1,8 +1,12 @@
+# Creates NSG, VNet, Subnet and associates the NSG to the Subnet.
+
 resource "azurerm_network_security_group" "nsg" {
   name                = var.nsgname
   location            = var.location
   resource_group_name = var.rgname
-  tags                = merge({ environment = var.environment }, var.tags)
+
+  # Tag NSG to track ownership/costs
+  tags = merge({ environment = var.environment }, var.tags)
 }
 
 resource "azurerm_virtual_network" "vnet" {
@@ -11,11 +15,7 @@ resource "azurerm_virtual_network" "vnet" {
   resource_group_name = var.rgname
   address_space       = var.vnet_address_space
 
-  tags = merge(
-    { environment = var.environment },
-    var.tags
-  )
-
+  tags = merge({ environment = var.environment }, var.tags)
 }
 
 resource "azurerm_subnet" "subnet" {

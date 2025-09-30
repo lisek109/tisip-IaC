@@ -1,3 +1,6 @@
+# NOTE: In root we build names which is not here via locals and pass them to modules. These are not needed here.
+
+# === Context / global inputs ===
 
 variable "location" {
   type        = string
@@ -9,30 +12,6 @@ variable "environment" {
   type        = string
   description = "Environment tag"
   default     = "Production"
-}
-
-variable "seq" {
-  type        = string
-  description = "Sequence number for resource names"
-  default     = "001"
-}
-
-variable "tags" {
-  type        = map(string)
-  description = "Tags to be applied to resources"
-  default     = {}
-}
-
-variable "vnet_address_space" {
-  type        = list(string)
-  description = "The address space that is used by the virtual network."
-  default     = []
-}
-
-variable "subnet_prefixes" {
-  type        = list(string)
-  description = "The address prefixes to use for the subnet."
-  default     = []
 }
 
 variable "environment_short" {
@@ -47,16 +26,39 @@ variable "project" {
   default     = "tisip-iac"
 }
 
+variable "seq" {
+  type        = string
+  description = "Sequence number for resource names"
+  default     = "001"
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags to be applied to resources"
+  default     = {}
+}
+
+# === Networking inputs ===
+
+variable "vnet_address_space" {
+  type        = list(string)
+  description = "The address space that is used by the virtual network."
+  default     = []
+}
+
+variable "subnet_prefixes" {
+  type        = list(string)
+  description = "The address prefixes to use for the subnet."
+  default     = []
+}
+
+
+# === Compute inputs ===
+
 variable "vmsize" {
   type        = string
   description = "The size of the Virtual Machine"
   default     = "Standard_B1s"
-}
-
-variable "nicname" {
-  type        = string
-  description = "Name of the Network Interface"
-  default     = "nic-tisip-iac"
 }
 
 variable "admin_username" {
@@ -67,3 +69,5 @@ variable "admin_password" {
   type      = string
   sensitive = true
 }
+
+

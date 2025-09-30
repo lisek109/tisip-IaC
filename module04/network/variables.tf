@@ -1,21 +1,21 @@
 variable "nsgname" {
   type        = string
-  description = "Name of the Network Security Group"
+  description = "Name of the Network Security Group (computed in root)."
 }
 
 variable "vnetname" {
   type        = string
-  description = "Name of the Virtual Network"
+  description = "Name of the Virtual Network (computed in root)."
 }
 
 variable "rgname" {
   type        = string
-  description = "Name of resource group"
+  description = "Name of resource group (computed in root)."
 }
 
 variable "location" {
   type        = string
-  description = "Location of resource group"
+  description = "Location of resource group (computed in root)."
   default     = "westeurope"
 }
 
@@ -32,8 +32,7 @@ variable "tags" {
 
 variable "subnetname" {
   type        = string
-  description = "Name of the Subnet"
-  default     = "snet-tisip-iac"
+  description = "Name of the Subnet (computed in root)."
 }
 
 variable "vnet_address_space" {
